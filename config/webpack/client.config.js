@@ -21,29 +21,10 @@ module.exports = merge(common, {
   },
   output: {
     path: path.resolve(__dirname, '../../public/dist'),
-    filename: isDevelopment ? '[name].js' : '[name].[fullhash].js',
-    chunkFilename: isDevelopment ? '[name].js' : '[name].[chunkhash].js',
     publicPath: '/'
   },
   optimization: {
-    splitChunks: !isDevelopment ? {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          reuseExistingChunk: true
-        },
-        common: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      },
-      chunks: 'all',
-      maxInitialRequests: 30,
-      maxAsyncRequests: 30,
-      maxSize: 250000
-    } : false
+    splitChunks: false
   },
   plugins: [
     new StyleLintPlugin({

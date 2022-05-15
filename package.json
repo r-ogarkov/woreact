@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler publish",
+    "deploy": "NODE_ENV=production wrangler publish",
     "client": "webpack $npm_package_config_client",
     "worker": "BABEL_ENV=worker webpack $npm_package_config_worker",
     "build": "webpack $npm_package_config_client && BABEL_ENV=worker webpack $npm_package_config_worker",
