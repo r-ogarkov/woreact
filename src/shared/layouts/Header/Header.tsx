@@ -18,7 +18,7 @@ export const Header: FunctionComponent = () => {
       <div className={cx('container', style.container)}>
         <div className={style.wrapper}>
           <div className={style.logoContainer}>
-            <Link to="/">ISO<small>JS</small></Link>
+            <Link to="/">Woreact<small>JS</small></Link>
           </div>
           <ul className={style.changeLanguage}>
             <li>

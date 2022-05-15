@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import reducer from './store';
 
 const configureStore = (preloadState?: {[key: string]: any}) => {
-  const composeEnhancers = composeWithDevTools({ name: 'ISOjs' });
+  const composeEnhancers = composeWithDevTools({ name: 'Woreact' });
   return createStore(reducer, preloadState, composeEnhancers(applyMiddleware(thunk  as ThunkMiddleware<any, any>)));
 }
 

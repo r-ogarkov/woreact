@@ -7,7 +7,7 @@ export const About: FunctionComponent<{ data: any }> = () => {
   return (
     <div className={style.about}>
       <div className={style.title}>
-        <h4>{t('about_iso')}</h4>
+        <h4>{t('about_woreact')}</h4>
       </div>
       <div className={style.textContainer}>
         <p>{t('description')}</p>

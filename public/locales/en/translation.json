@@ -1,8 +1,8 @@
 {
-  "hello": "Welcome to the ISO starter-pack",
+  "hello": "Welcome to the Woreact!",
   "products": "Products",
   "about": "About",
-  "description": "Iso is starter-pack for creating isomorphic single-page application with using SSR technology on NodeJS.",
-  "about_iso": "About ISO starter-pack",
+  "description": "Woreact is an edge-rendered React boilerplate built for Cloudflare Workers.",
+  "about_woreact": "About Woreact",
   "developed_by": "Developed by "
 }
