@@ -39,7 +39,7 @@ header {
             font-size: vw(35px, $tablet);
           }
           @include respond-to(mobile) {
-            font-size: vw(35px, $mobile);
+            font-size: vw(15px, $mobile);
           }
           small {
             font-size: vw(16px, $desktop);
@@ -50,7 +50,7 @@ header {
               font-size: vw(16px, $tablet);
             }
             @include respond-to(mobile) {
-              font-size: vw(16px, $mobile);
+              display: none;
             }
           }
         }
