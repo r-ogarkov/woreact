@@ -1,5 +1,5 @@
 {
-  "host": "http://localhost:8787",
+  "host": "https://woreact.ogarich89.workers.dev",
   "api": "https://reqres.in",
   "production": true
 }

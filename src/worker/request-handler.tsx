@@ -13,6 +13,8 @@ import options from '../shared/i18n.js';
 import Backend from 'i18next-http-backend';
 import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+import config from '../../config/config';
+const { server: { host } } = config;
 
 interface Event {
   request: Request,
@@ -29,7 +31,7 @@ export const handleRequest = async (event: Event) => {
     await i18next.init({
       ...options,
       backend: {
-        loadPath: 'http://localhost:8787/locales/{{lng}}/{{ns}}.json'
+        loadPath: `${host}/locales/{{lng}}/{{ns}}.json`
       }
     } as InitOptions);
 
