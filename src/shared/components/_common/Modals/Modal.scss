@@ -1,0 +1,58 @@
+@import "variables";
+@import "mixins";
+
+.substrate {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 14;
+  background-color: rgba(#000, .6);
+  .wrapper {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    .modal {
+      text-align: left;
+      position: relative;
+      display: inline-block;
+      z-index: 30;
+      padding: vw(35px, $desktop);
+      border-radius: 0.3vw;
+      @include respond-to(laptop) {
+        padding: vw(35px, $laptop);
+      }
+      @include respond-to(tablet) {
+        padding: vw(35px, $tablet);
+      }
+      @include respond-to(mobile) {
+        padding: 0
+      }
+      &.dark {
+        background-color: #000;
+      }
+      .close-btn {
+        cursor: pointer;
+        position: absolute;
+        top: vw(10px, $desktop);
+        right: vw(10px, $desktop);
+        @include respond-to(laptop) {
+          top: vw(10px, $laptop);
+          right: vw(10px, $laptop);
+        }
+        @include respond-to(tablet) {
+          top: vw(10px, $tablet);
+          right: vw(10px, $tablet);
+        }
+        @include respond-to(mobile) {
+          top: vw(-30px, $mobile);
+          right: 0;
+        }
+      }
+    }
+  }
+}

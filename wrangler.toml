@@ -1,0 +1,13 @@
+name = "woreact"
+main = "./index.js"
+account_id = "76da2554c52fc1eb1de0c48fcc80e7d8"
+workers_dev = true
+compatibility_date = "2022-05-10"
+
+[build]
+command = "yarn build"
+cwd = "./"
+watch_dir = "./src/"
+
+[site]
+bucket = "public"

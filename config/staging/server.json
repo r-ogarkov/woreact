@@ -1,0 +1,6 @@
+{
+  "host": "http://localhost:8787",
+  "api": "https://reqres.in",
+  "production": false
+}
+

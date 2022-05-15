@@ -1,0 +1,48 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": ["plugin:@typescript-eslint/recommended"],
+  "plugins": ["react", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/class-name-casing": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "no-console": 0,
+    "linebreak-style": ["error","unix"],
+    "quotes": ["error","single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-key": 2,
+    "comma-dangle": ["error", "never"],
+    "eqeqeq": 2,
+    "object-curly-spacing": ["error", "always"],
+    "prefer-destructuring": ["error", {
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }],
+    "no-eval": 2,
+    "no-multi-str": 2,
+    "prefer-const": ["error", {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }]
+  },
+  "globals": {
+    "isDevelopment": true,
+    "timestamp": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}

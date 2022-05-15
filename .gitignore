@@ -1,0 +1,11 @@
+node_modules/
+.idea/
+.vscode
+yarn-error.log
+package-lock.json
+config/development
+coverage
+.cache
+.swc
+public/dist
+workers-site
