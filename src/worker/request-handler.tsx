@@ -10,11 +10,14 @@ import type { InitOptions } from 'i18next';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import options from '../shared/i18n.js';
-import Backend from 'i18next-http-backend';
+import Fetch from 'i18next-fetch-backend';
 import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
 import config from '../../config/config';
 const { server: { host } } = config;
+
+// TEMP
+import translation from '../../public/locales/en/translation.json'
 
 interface Event {
   request: Request,
@@ -26,10 +29,11 @@ export const handleRequest = async (event: Event) => {
     return await getAssetFromKV(event);
   } catch (error) {
     const { request } = event;
-    i18next.use(Backend);
+    i18next.use(Fetch);
     i18next.use(initReactI18next);
     await i18next.init({
       ...options,
+      debug: true,
       backend: {
         loadPath: `${host}/locales/{{lng}}/{{ns}}.json`
       }
@@ -59,7 +63,7 @@ export const handleRequest = async (event: Event) => {
       html,
       envType: process.env.NODE_ENV || 'development',
       initialData: JSON.stringify(store.getState()),
-      initialI18nStore: JSON.stringify(i18next.services.resourceStore.data),
+      initialI18nStore: JSON.stringify({ en: { translation } } || i18next.services.resourceStore.data),
       initialLanguage: JSON.stringify(i18next.language)
     }), {
       headers: {
