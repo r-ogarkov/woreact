@@ -13,13 +13,6 @@
     "allowJs": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "types": ["node", "jest"]
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ]
+    "types": ["node"]
+  }
 }

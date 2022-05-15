@@ -13,6 +13,10 @@
 <body>
     <div id="root">{{{html}}}</div>
     <script>window.__initialData__ = {{{initialData}}}</script>
+    <script>
+      window.initialI18nStore = {{{initialI18nStore}}};
+      window.initialLanguage = {{{initialLanguage}}};
+    </script>
     <script src="/dist/bundle.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ import type { InitOptions } from 'i18next';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import options from '../shared/i18n.js';
-import Fetch from 'i18next-fetch-backend';
+import Backend from 'i18next-http-backend';
 import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
 
@@ -24,16 +24,22 @@ export const handleRequest = async (event: Event) => {
     return await getAssetFromKV(event);
   } catch (error) {
     const { request } = event;
-    i18next.use(Fetch)
+    i18next.use(Backend);
     i18next.use(initReactI18next);
-    await i18next.init(options as InitOptions);
+    await i18next.init({
+      ...options,
+      backend: {
+        loadPath: 'http://localhost:8787/locales/{{lng}}/{{ns}}.json'
+      }
+    } as InitOptions);
+
     const store = configureStore();
 
-    const { pathname } = new URL(request.url);
+    const { pathname, search } = new URL(request.url);
 
     const initialActions = appRoutes.reduce((acc: Array<Promise<void>>, route) => matchPath(route, pathname) && route.initialAction ? [
       ...acc,
-      store.dispatch(route.initialAction({ originalUrl: request.url }))
+      store.dispatch(route.initialAction({ originalUrl: `${pathname}${search}` }))
     ] : acc, []);
     await Promise.all(initialActions).catch((error) => console.error(error));
 
@@ -50,7 +56,9 @@ export const handleRequest = async (event: Event) => {
     return new Response(template({
       html,
       envType: process.env.NODE_ENV || 'development',
-      initialData: JSON.stringify(store.getState())
+      initialData: JSON.stringify(store.getState()),
+      initialI18nStore: JSON.stringify(i18next.services.resourceStore.data),
+      initialLanguage: JSON.stringify(i18next.language)
     }), {
       headers: {
         'content-type': 'text/html;charset=UTF-8'
