@@ -1,4 +1,3 @@
-import configureStore from '../shared/configure-store';
 import appRoutes from '../shared/routes';
 import { matchPath } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
@@ -12,11 +11,14 @@ import { initReactI18next } from 'react-i18next';
 import options from '../shared/i18n.js';
 import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+import { configureStore } from '@reduxjs/toolkit'
 import config from '../../config/config';
+import Fetch from 'i18next-fetch-backend';
 const { server: { host } } = config;
 
-// TEMP
 import translation from '../../public/locales/en/translation.json'
+import reducer from 'shared/store';
+import thunk from 'redux-thunk';
 
 interface Event {
   request: Request,
@@ -28,6 +30,7 @@ export const handleRequest = async (event: Event) => {
     return await getAssetFromKV(event);
   } catch (error) {
     const { request } = event;
+    i18next.use(Fetch);
     i18next.use(initReactI18next);
     await i18next.init({
       ...options,
@@ -36,13 +39,17 @@ export const handleRequest = async (event: Event) => {
       }
     } as InitOptions);
 
-    const store = configureStore();
+    const store = configureStore({
+      reducer,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+      devTools: process.env.NODE_ENV !== 'production'
+    });
 
     const { pathname, search } = new URL(request.url);
 
-    const initialActions = appRoutes.reduce((acc: Array<Promise<void>>, route) => matchPath(route, pathname) && route.initialAction ? [
+    const initialActions = appRoutes.reduce((acc: Array<Promise<any>>, route) => matchPath(route, pathname) && route.initialAction ? [
       ...acc,
-      store.dispatch(route.initialAction({ originalUrl: `${pathname}${search}` }))
+      store.dispatch(route.initialAction({ originalUrl: `${pathname}${search}` }) as any)
     ] : acc, []);
     await Promise.all(initialActions).catch((error) => console.error(error));
 

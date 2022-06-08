@@ -4,12 +4,20 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { withSSR } from 'react-i18next';
 import './i18next';
+import reducer from 'shared/store';
+import type { ThunkMiddleware } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
-import configureStore from '../shared/configure-store';
+import { configureStore } from '@reduxjs/toolkit'
 import { App } from 'shared/App';
 const ExtendedApp = withSSR()(App);
-const store = configureStore(window.__initialData__);
 
+const store = configureStore({
+  preloadedState: window.__initialData__,
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk as ThunkMiddleware<any, any>),
+  devTools: process.env.NODE_ENV !== 'production'
+});
 
 hydrateRoot(
   document.getElementById('root') as HTMLElement,

@@ -21,7 +21,7 @@ const productsProduct: FunctionComponent<Props> = ({ initialAction }) => {
     if(!product) {
       const found = products.find(product => +product.id === +id);
       if(!found) {
-        dispatch(initialAction({ originalUrl: pathname }));
+        dispatch(initialAction({ originalUrl: pathname }) as any);
       } else {
         dispatch(receiveProduct(found));
       }

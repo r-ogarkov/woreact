@@ -15,7 +15,7 @@ const products: FunctionComponent<Props> = ({ initialAction }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if(!products?.length) {
-      dispatch(initialAction());
+      dispatch(initialAction() as any);
     }
   }, []);
   return (
