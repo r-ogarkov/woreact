@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrateRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { withSSR } from 'react-i18next';
@@ -10,7 +10,9 @@ import { App } from 'shared/App';
 const ExtendedApp = withSSR()(App);
 const store = configureStore(window.__initialData__);
 
-hydrate(
+
+hydrateRoot(
+  document.getElementById('root') as HTMLElement,
   <Provider store={store}>
     <BrowserRouter>
       <ExtendedApp
@@ -18,7 +20,6 @@ hydrate(
         initialI18nStore={window.initialI18nStore}
       />
     </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
 
