@@ -5532,7 +5532,7 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-redux-devtools-extension@*, redux-devtools-extension@^2.13.5:
+redux-devtools-extension@*:
   version "2.13.9"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz#6b764e8028b507adcb75a1cae790f71e6be08ae7"
   integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
@@ -5542,7 +5542,7 @@ redux-thunk@*, redux-thunk@^2.3.0, redux-thunk@^2.4.1:
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
   integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
 
-redux@*, redux@^4.0.0, redux@^4.0.1:
+redux@*, redux@^4.0.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.2.tgz#140f35426d99bb4729af760afcf79eaaac407104"
   integrity sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==
@@ -6432,10 +6432,10 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
-swc-loader@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/swc-loader/-/swc-loader-0.2.1.tgz#43f2d1a746cf985476ca75ecac6234c7314fd9f8"
-  integrity sha512-opJG9R5Dl+Fa0QihOZO9v6vueB+JzRhJZw+c4ZRCqUHG2RZL10eHZRHMdQoDz6bvLp7XWe7XBIMUkuWtoGfMJw==
+swc-loader@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/swc-loader/-/swc-loader-0.2.2.tgz#3e2f4efc91bd4a3928fb22cbdcfdd8135b5aec78"
+  integrity sha512-haRGcIwvRj8BLv7Un2qT/fMHNYN0DKJJPZV9gi39//vgglvpiFsXTM9jxLmpeNl3lhZ8G5/lGXkKfbvfE0VCsQ==
 
 table@^6.8.0:
   version "6.8.0"
