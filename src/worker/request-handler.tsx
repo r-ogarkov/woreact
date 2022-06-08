@@ -33,7 +33,6 @@ export const handleRequest = async (event: Event) => {
     i18next.use(initReactI18next);
     await i18next.init({
       ...options,
-      debug: true,
       backend: {
         loadPath: `${host}/locales/{{lng}}/{{ns}}.json`
       }

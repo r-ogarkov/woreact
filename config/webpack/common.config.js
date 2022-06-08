@@ -6,7 +6,7 @@ const path = require('path');
 
 const { server: { production } } = config;
 const isDevelopment = !production;
-const isServer = process.env.BABEL_ENV === 'worker';
+const isServer = process.env.SWC_ENV === 'worker';
 
 const common = {
   resolve: {
@@ -32,7 +32,21 @@ const common = {
       {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'swc-loader',
+        options: {
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+              tsx: true,
+              dynamicImport: true
+            },
+            transform: {
+              react: {
+                runtime: 'automatic'
+              }
+            }
+          }
+        }
       },
       {
         test: /\.(scss|sass|css)$/,

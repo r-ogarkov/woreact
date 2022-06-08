@@ -11,7 +11,9 @@ module.exports = merge(common, {
   optimization: {
     splitChunks: false
   },
-  externals: [nodeExternals()],
+  externals: [nodeExternals({
+    allowlist: ['react/jsx-dev-runtime']
+  })],
   output: {
     path: path.resolve(__dirname, '../../public/dist'),
     filename: 'worker.js',
