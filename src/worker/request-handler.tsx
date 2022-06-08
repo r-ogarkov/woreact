@@ -10,7 +10,6 @@ import type { InitOptions } from 'i18next';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import options from '../shared/i18n.js';
-import Fetch from 'i18next-fetch-backend';
 import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
 import config from '../../config/config';
@@ -29,7 +28,6 @@ export const handleRequest = async (event: Event) => {
     return await getAssetFromKV(event);
   } catch (error) {
     const { request } = event;
-    i18next.use(Fetch);
     i18next.use(initReactI18next);
     await i18next.init({
       ...options,
