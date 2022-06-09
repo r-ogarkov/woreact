@@ -12,6 +12,7 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "types": ["node"]
   }
