@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { App } from 'shared/App';
-import type { InitOptions } from 'i18next';
+import type { InitOptions , Module } from 'i18next';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import options from '../shared/i18n.js';
@@ -13,10 +13,9 @@ import template from './index.handlebars';
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
 import { configureStore } from '@reduxjs/toolkit'
 import config from '../../config/config';
-import Fetch from 'i18next-fetch-backend';
+import Backend from 'worker/plugins/i18next-kv-backend';
 const { server: { host } } = config;
 
-import translation from '../../public/locales/en/translation.json'
 import reducer from 'shared/store';
 import thunk from 'redux-thunk';
 
@@ -30,7 +29,7 @@ export const handleRequest = async (event: Event) => {
     return await getAssetFromKV(event);
   } catch (error) {
     const { request } = event;
-    i18next.use(Fetch);
+    i18next.use(Backend as Module);
     i18next.use(initReactI18next);
     await i18next.init({
       ...options,
@@ -67,7 +66,7 @@ export const handleRequest = async (event: Event) => {
       html,
       envType: process.env.NODE_ENV || 'development',
       initialData: JSON.stringify(store.getState()),
-      initialI18nStore: JSON.stringify({ en: { translation } } || i18next.services.resourceStore.data),
+      initialI18nStore: JSON.stringify(i18next.services.resourceStore.data),
       initialLanguage: JSON.stringify(i18next.language)
     }), {
       headers: {
