@@ -16,10 +16,10 @@ export default class Backend {
 
   async read(language, namespace, callback) {
     const url = this.services.interpolator.interpolate(this.options.loadPath, { lng: language, ns: namespace });
-    const event = new FetchEvent('fetch', {
-      request: new Request(url)
-    })
-    const response = await getAssetFromKV(event);
+    const response = await getAssetFromKV({
+      request: new Request(url),
+      waitUntil: () => Promise.resolve()
+    });
     const data = await response.json();
     callback(null, data);
   }
